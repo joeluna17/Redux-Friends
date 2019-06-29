@@ -4,7 +4,13 @@
 
 
 const defaultState = {
-        friends:[]
+    deletingFriend: false,
+    fetchingFriends: false,
+    friends: [],
+    loggingIn: false,
+    savingFriends: false,
+    updatingFriend: false,
+    error: null
 }
 
 
