@@ -5,7 +5,7 @@ import React from 'react';
 
 const Friend = props =>{
 
-    console.log(props, "just here in the friends component") //DELETE ME
+    //console.log(props, "just here in the friends component") //DELETE ME
 
     return(
         <>

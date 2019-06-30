@@ -1,34 +1,31 @@
 import React from 'react';
 import LoginForm from './components/LogInForm';
 import FriendsList from './components/FriendsList';
+import PrivateRoute from './components/PrivateRoute';
 import { Route, Link } from 'react-router-dom';  
 
 import './App.css';
 
 class App extends React.Component {
 
-       state = {
-        friends:[
-          {
-          id: 1,
-          name: 'Joe',
-          age: 24,
-          email: 'joe@lambdaschool.com',
-          }
-        ]
+   
+
+
+  componentDidMount(){
+
   }
+
 
   render(){ 
             return (
             <div className="App">
-            <Link to="/" > Home</Link>
+              <Link to="/login">Login</Link>
+              <Link to= "/protected">Friends</Link>
               <h1>Welcome to your Friends</h1>
-              <LoginForm />
-
-              <Route exact path="/" render={props=><FriendsList {...props} friends={this.state.friends}/>}/>
+              <Route path="/login" component={LoginForm} />
+              <PrivateRoute exact path="/protected" component={FriendsList} />
             </div>
 
-            
         )
         
     }

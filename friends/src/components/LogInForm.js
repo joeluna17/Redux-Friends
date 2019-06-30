@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { login } from '../actions'
 
 
 class LoginForm extends React.Component {
@@ -31,11 +32,21 @@ class LoginForm extends React.Component {
         e.preventDefault()
         console.log('just tried to login')
 
+        const creds = {
+            username: this.state.username,
+            password: this.state.password
+        }
+
+        this.props.login(creds).then(()=> this.props.history.push("/protected"))
+
         this.setState({
             username:"",
             password:"",
             loggingIn: false
         })
+        
+        
+
     }
 
     render(){
@@ -78,4 +89,4 @@ const mapSateToProps = state => {
             }
 }
 
-export default connect(mapSateToProps,{})(LoginForm)
+export default connect(mapSateToProps,{ login })(LoginForm)

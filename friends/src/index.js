@@ -7,11 +7,12 @@ import { createStore, applyMiddleware } from 'redux' ;
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { rootReducer } from './reducer';
+import { setToken } from './customMiddleware/Token';
 import * as serviceWorker from './serviceWorker';
 
 
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk, setToken));
 
 
 ReactDOM.render( <Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
