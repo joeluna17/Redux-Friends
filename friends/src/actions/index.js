@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { existsTypeAnnotation } from '@babel/types';
 
 
 export const FETCHING_FRIENDS_DATA = "FETCHING_FRIENDS_DATA";
@@ -7,6 +8,7 @@ export const FETCH_ERROR = "FETCH_ERROR";
 export const LOG_IN = "LOG_IN";
 export const LOG_IN_SUCCESSFUL = "LOG_IN_SUCCESSFUL";
 export const SAVING_FRIEND_DATA = "SAVING_FRIEND_DATA";
+export const SAVE_FREIND_SUCCSSESFUL = "SAVE_FREIND_SUCCSSESFUL";
 
 //action above
 
@@ -48,4 +50,18 @@ export const login = creds => dispatch => {
     .catch(err=>{
         alert(err)
      })
+}
+
+
+export const addFriend = friend => dispatch => {
+    dispatch({type:SAVING_FRIEND_DATA})
+     axios.post('http://localhost:5000/api/friends', 
+     friend,
+     { headers: { Authorization: localStorage.getItem("userToken") }})
+    .then(res => {
+        dispatch({
+            type: SAVE_FREIND_SUCCSSESFUL,
+            payload: res.data
+        })
+    }).catch(err => alert(err))
 }

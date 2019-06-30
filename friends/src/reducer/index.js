@@ -1,4 +1,4 @@
-import { FETCHING_FRIENDS_DATA , FETCH_SUCCESSFUL, FETCH_ERROR ,  SAVING_FRIEND_DATA } from '../actions'
+import { FETCHING_FRIENDS_DATA , FETCH_SUCCESSFUL, FETCH_ERROR ,  SAVING_FRIEND_DATA, SAVE_FREIND_SUCCSSESFUL } from '../actions'
 
 
 
@@ -44,6 +44,20 @@ export const rootReducer = (state = defaultState, action) => {
                 ...state,
                 fetchingFriends:false,
                 error: action.payload
+            }
+
+        case SAVING_FRIEND_DATA:
+            return {
+                ...state,
+                savingFriends: true,
+                error: ''
+            }
+
+        case SAVE_FREIND_SUCCSSESFUL:
+            return {
+                ...state,
+                savingFriends:false,
+                friends: action.payload
             }
 
         default: 
